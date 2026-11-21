@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="app.js" defer></script>
+    <title>Panel de Control</title>
+</head>
+<body>
+    <header>
+        <h1>Reto Araucaria</h1>
+        
+        <button class="exit-config" id="exit-config" type="button" hidden>Volver</button>
+        <button class="config" id="config" type="button" hidden aria-label="Configuración">⚙</button>
+        
+        <button class="logout" id="logout" type="button" hidden>Cerrar sesión</button>
+    </header>
+
+    <main>
+        <section id="login-section" hidden>
+            <h2>Login</h2>
+
+            <form id="form-login">
+                <div class ="field">
+                    <label for="email">Correo electrónico:</label>
+                    <input id="email" name="email" type="email" required autocomplete="email">
+                </div>
+
+                <div class ="field">
+                    <label for="password">Contraseña:</label>
+                    <input id="password" name="password" type="password" required autocomplete="current-password">
+                </div>
+
+                <button id="login-button" type="submit">Iniciar sesión</button>
+            </form>
+
+            <p class="login-error" id="login-error"></p>
+        </section>
+
+        <section id="redeem-section" hidden>
+            <h2>Canjear Códigos</h2>
+
+            <form id="form-redeemed-code">
+                <div class="base-code" id="code-outcome">Ingresá un código</div>
+
+                <div class ="field">
+                    <label for="code">Código:</label>
+                    <input class="code" id="code" name="code" type="text" maxlength="9" inputmode="numeric" required autocomplete="off" placeholder="000 - 000">
+                </div>
+
+                <button id="code-button" type="submit">Canjear</button>
+            </form>
+        </section>
+
+        <section id="today-section" hidden>
+            <h2>Hoy</h2>
+
+            <p class="today-minigame" id="today-minigame">Minijuego del día: <strong id="minigame">-</strong></p>
+            <div class="today-data">
+                <p>Jugaron: <strong id="plays">-</strong></p>
+                <p>Ganaron: <strong id="wins">-</strong></p>
+                <p>Canjearon: <strong id="redeemed">-</strong></p>
+            </div>
+        </section>
+
+        <section id="config-section" hidden>
+            <h2>Configuración</h2>
+
+            <form id="form-config">
+                <div>
+                    <label for="mode">Modo:</label>
+                    <select id="mode" name="mode">
+                        <option value="rotacion">Rotación</option>
+                        <option value="aleatorio">Aleatorio</option>
+                        <option value="manual">Manual</option>
+                    </select>
+                </div>
+
+                <div class ="field" id="manual-mode" hidden>
+                    <label for="manual-minigame">Minijuego Manual:</label>
+                    <select id="manual-minigame" name="manual-minigame"></select>
+                </div>
+
+                <fieldset id="rotation-mode" hidden>
+                    <legend>Orden de los minijuegos:</legend>
+                    
+                    <div class ="field">
+                        <label for="order-1">Lunes:</label>
+                        <select class="minigame-selects" id="order-1" name="order-1"></select>
+                    </div>
+
+                    <div class ="field">
+                        <label for="order-2">Martes:</label>
+                        <select class="minigame-selects" id="order-2" name="order-2"></select>
+                    </div>
+
+                    <div class ="field">
+                        <label for="order-3">Miércoles:</label>
+                        <select class="minigame-selects" id="order-3" name="order-3"></select>
+                    </div>
+
+                    <div class ="field">
+                        <label for="order-4">Jueves:</label>
+                        <select class="minigame-selects" id="order-4" name="order-4"></select>
+                    </div>
+
+                    <div class ="field">
+                        <label for="order-5">Viernes:</label>
+                        <select class="minigame-selects" id="order-5" name="order-5"></select>
+                    </div>
+
+                    <div class ="field">
+                        <label for="order-6">Sábado:</label>
+                        <select class="minigame-selects" id="order-6" name="order-6"></select>
+                    </div>
+
+                    <div class ="field">
+                        <label for="order-7">Domingo:</label>
+                        <select class="minigame-selects" id="order-7" name="order-7"></select>
+                    </div>
+                </fieldset>
+
+                <div class ="field">
+                    <label for="code-time">Validez del código (horas):</label>
+                    <input id="code-time" name="code-time" type="number" required min="1" step="1">
+                </div>
+
+                <button id="save-config" type="submit">Guardar</button>
+                
+                <p class="save-message" id="save-message"></p>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
