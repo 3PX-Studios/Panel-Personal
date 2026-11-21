@@ -43,7 +43,10 @@ const saveMessageText = document.getElementById("save-message")
 let wasLoggedIn = null
 let minigamesList = {}
 
-exitConfigButton.addEventListener("click", () => { showScreen("panel") })
+exitConfigButton.addEventListener("click", async () => { 
+  await loadStats()
+  showScreen("panel")
+})
 configButton.addEventListener("click", async () => { 
   await loadConfig()
   changeMinigameMode(modeSelect.value)
